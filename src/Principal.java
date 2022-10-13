@@ -25,10 +25,7 @@ public class Principal extends JFrame implements ActionListener {
         campo.setFont(new Font("sans-self",Font.BOLD,22));
 
         JPanel jPrincipal = new JPanel();
-        jPrincipal.setLayout(new BorderLayout());
-
-        JPanel jPanelNumbers = new JPanel();
-        jPanelNumbers.setLayout(new FlowLayout());
+        jPrincipal.setLayout(new GridLayout(5,4));
 
         JButton num0 = createButton("0");
         JButton num1 = createButton("1");
@@ -41,49 +38,45 @@ public class Principal extends JFrame implements ActionListener {
         JButton num8 = createButton("8");
         JButton num9 = createButton("9");
 
-        jPanelNumbers.add(num7);
-        jPanelNumbers.add(num8);
-        jPanelNumbers.add(num9);
-        jPanelNumbers.add(num4);
-        jPanelNumbers.add(num5);
-        jPanelNumbers.add(num6);
-        jPanelNumbers.add(num1);
-        jPanelNumbers.add(num2);
-        jPanelNumbers.add(num3);
-        jPanelNumbers.add(num0);
-
-        JPanel jPanelOperationRight = new JPanel();
-        jPanelOperationRight.setLayout(new BoxLayout(jPanelOperationRight,BoxLayout.Y_AXIS));
-
         JButton btSum = createButton("+");
         JButton btRes = createButton("-");
         JButton btMulti = createButton("*");
         JButton btEqual = createButton("=");
         JButton btDivi = createButton("/");
 
-        jPanelOperationRight.add(btDivi);
-        jPanelOperationRight.add(btMulti);
-        jPanelOperationRight.add(btRes);
-        jPanelOperationRight.add(btSum);
-        jPanelOperationRight.add(btEqual);
+        JButton btComa = createButton(",");
+        JButton changeSign = createButton("+/-");
 
-        JPanel jPanelOperationTop = new JPanel();
-        jPanelOperationTop.setLayout(new BoxLayout(jPanelOperationTop,BoxLayout.X_AXIS));
-
-        //JButton btPorse = createButton("%");
         JButton btDelte = createButton("C");
         JButton btCleanCampo = createButton("CE");
         JButton btDeleteNumber = createButton("del");
 
-        //jPanelOperationTop.add(btPorse);
-        jPanelOperationTop.add(btCleanCampo);
-        jPanelOperationTop.add(btDelte);
-        jPanelOperationTop.add(btDeleteNumber);
+        jPrincipal.add(btCleanCampo);
+        jPrincipal.add(btDelte);
+        jPrincipal.add(btDeleteNumber);
+        jPrincipal.add(btDivi);
 
-        //jPrincipal --> JPane
-        jPrincipal.add(jPanelNumbers, BorderLayout.CENTER);
-        jPrincipal.add(jPanelOperationRight, BorderLayout.LINE_END);
-        jPrincipal.add(jPanelOperationTop, BorderLayout.PAGE_START);
+        jPrincipal.add(num7);
+        jPrincipal.add(num8);
+        jPrincipal.add(num9);
+        jPrincipal.add(btMulti);
+
+        jPrincipal.add(num4);
+        jPrincipal.add(num5);
+        jPrincipal.add(num6);
+        jPrincipal.add(btRes);
+
+        jPrincipal.add(num1);
+        jPrincipal.add(num2);
+        jPrincipal.add(num3);
+        jPrincipal.add(btSum);
+
+        jPrincipal.add(changeSign);
+        jPrincipal.add(num0);
+        jPrincipal.add(btComa);
+        jPrincipal.add(btEqual);
+
+        btComa.setEnabled(false);
 
         //JFrame
         add(campo);
@@ -152,6 +145,10 @@ public class Principal extends JFrame implements ActionListener {
         if(e.getActionCommand().equals("del")){
             campo.setText(deleteANumber());
         }
+        if(e.getActionCommand().equals("+/-")){
+            Float valor = Float.parseFloat(campo.getText()) * -1;
+            campo.setText(String.valueOf(valor));
+        }
     }
 
     private JButton createButton(String text){
@@ -169,7 +166,6 @@ public class Principal extends JFrame implements ActionListener {
     private void cleanCampo(){
         campo.setText("");
     }
-
     private void operation(String operacion){
         if(valor1 == 0)
             valor1 = Float.parseFloat(campo.getText());
@@ -205,7 +201,6 @@ public class Principal extends JFrame implements ActionListener {
                 break;
         }
     }
-
     private void mostrarResultado(){
         campo.setText(String.valueOf(resultado));
     }
