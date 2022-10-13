@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,8 +22,9 @@ public class Principal extends JFrame implements ActionListener {
         setResizable(false);
 
         campo = new JTextField();
-        campo.setEnabled(false);
-        campo.setFont(new Font("sans-self",Font.BOLD,22));
+        campo.setEditable(false);
+        campo.setFont(new Font("sans-serif",Font.BOLD,22));
+        campo.setForeground(Color.BLACK);
 
         JPanel jPrincipal = new JPanel();
         jPrincipal.setLayout(new GridLayout(5,4));
@@ -155,6 +157,7 @@ public class Principal extends JFrame implements ActionListener {
         JButton button = new JButton(text);
         button.addActionListener(this);
         button.setActionCommand(text);
+        button.setBackground(Color.WHITE);
         return button;
     }
     private void setNumCampo(int number){
