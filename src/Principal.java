@@ -51,7 +51,7 @@ public class Principal extends JFrame implements ActionListener {
 
         JButton btDelte = createButton("C");
         JButton btCleanCampo = createButton("CE");
-        JButton btDeleteNumber = createButton("del");
+        JButton btDeleteNumber = createButton("DEL");
 
         jPrincipal.add(btCleanCampo);
         jPrincipal.add(btDelte);
@@ -148,8 +148,11 @@ public class Principal extends JFrame implements ActionListener {
             campo.setText(deleteANumber());
         }
         if(e.getActionCommand().equals("+/-")){
-            Float valor = Float.parseFloat(campo.getText()) * -1;
-            campo.setText(String.valueOf(valor));
+            if(!campo.getText().equals("")){
+                Float valor = Float.parseFloat(campo.getText()) * -1;
+                campo.setText(String.valueOf(valor));
+            }
+
         }
     }
 
@@ -158,6 +161,7 @@ public class Principal extends JFrame implements ActionListener {
         button.addActionListener(this);
         button.setActionCommand(text);
         button.setBackground(Color.WHITE);
+        button.setMargin(new Insets(0,10,0,10));
         return button;
     }
     private void setNumCampo(int number){
